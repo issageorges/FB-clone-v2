@@ -17,10 +17,20 @@ const UserProvider = ({ children }) => {
     navigate("/login");
   };
 
+  const fetchUser = async () => {
+    try {
+      const response = await axios.get(`${baseUrl}/user`);
+      setUser(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      setUser(JSON.parse(user));
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+      fetchUser(); // Fetch user information from the server
     }
   }, []);
 
@@ -34,8 +44,8 @@ const UserProvider = ({ children }) => {
 
     try {
       const { data } = await axios.post(`${baseUrl}/user/login`, body);
-      console.log(data);
       localStorage.setItem("user", JSON.stringify(data));
+      setUser(data);
       navigate("/");
     } catch (err) {
       console.log(err);
@@ -52,8 +62,7 @@ const UserProvider = ({ children }) => {
     };
 
     try {
-      const { data } = await axios.post(`${baseUrl}/user/register`, body);
-      console.log(data);
+      await axios.post(`${baseUrl}/user/register`, body);
       navigate("/login");
     } catch (err) {
       console.log(err);
@@ -62,7 +71,7 @@ const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ user, logoutHandler, registerHandler, loginHandler }}
+      value={{ user, logoutHandler, registerHandler, loginHandler, fetchUser }}
     >
       {children}
     </UserContext.Provider>
@@ -70,3 +79,4 @@ const UserProvider = ({ children }) => {
 };
 
 export default UserProvider;
+

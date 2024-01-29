@@ -1,40 +1,41 @@
+import axios from "axios";
+
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 import { baseUrl } from "../config/api";
 import { ThumbsUp, MessageSquare, CircleUserRound } from "lucide-react";
 
-export default function Blog() {
-  const { blogId } = useParams();
-  const [blog, setBlog] = useState(null);
+export default function Post() {
+  const { postId } = useParams();
+  const [post, setPost] = useState(null);
 
   useEffect(() => {
-    const getBlog = async () => {
+    const getPost = async () => {
       try {
-        const blog = await axios.get(baseUrl + "/blog/" + blogId);
-        setBlog(blog.data);
+        const post = await axios.get(baseUrl + "/post/" + postId);
+        setPost(post.data);
       } catch (err) {
         console.log(err);
       }
     };
-    getBlog();
-  }, [blogId]);
+    getPost();
+  }, [postId]);
 
-  console.log(blog);
+  console.log(post);
 
-  return blog ? (
+  return post ? (
     <div>
       <img
         className="w-full h-64 object-contain border p-2 my-4"
-        src={baseUrl + "/" + blog.image}
+        src={baseUrl + "/" + post.image}
       />
-      <h1 className="text-3xl font-bold text-center my-2">{blog.title}</h1>
-      Author: <span className="font-bold">{blog.author.name}</span>
-      <p className="py-4">{blog.content}</p>
+      <h1 className="text-3xl font-bold text-center my-2">{post.title}</h1>
+      Author: <span className="font-bold">{post.author.name}</span>
+      <p className="py-4">{post.content}</p>
       <hr className="mt-10" />
       <div className="flex gap-4 p-2">
         <ThumbsUp />
-        <span>{blog.likes.length || 0}</span>
+        <span>{post.likes.length || 0}</span>
         <MessageSquare />
         <span>{0}</span>
       </div>

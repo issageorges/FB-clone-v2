@@ -1,10 +1,10 @@
-import { useBlogContext } from "../context/blog-context";
+import { usePostContext } from "../context/post-context";
 
-export default function CreateBlog() {
-  const { createBlogHandler } = useBlogContext();
+export default function CreatePost() {
+  const { createPostHandler } = usePostContext();
   return (
     <div className="flex justify-center pt-10">
-      <form className="w-full max-w-2xl bg-white rounded-lg shadow p-6 space-y-4" onSubmit={createBlogHandler}>
+      <form className="w-full max-w-2xl bg-white rounded-lg shadow p-6 space-y-4" onSubmit={createPostHandler}>
         <h2 className="text-lg font-semibold text-gray-900">Create Post</h2>
         <div>
           <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-700">What's on your mind?</label>
@@ -17,12 +17,12 @@ export default function CreateBlog() {
           />
         </div>
         <div>
-          <label htmlFor="blog-image" className="block mb-2 text-sm font-medium text-gray-700">Upload Image</label>
+          <label htmlFor="post-image" className="block mb-2 text-sm font-medium text-gray-700">Upload Image</label>
           <input
-            id="blog-image"
+            id="post-image"
             className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none"
             type="file"
-            name="blog-image"
+            name="post-image"
           />
         </div>
         <div>
