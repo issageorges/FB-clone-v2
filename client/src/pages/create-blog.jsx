@@ -3,19 +3,45 @@ import { useBlogContext } from "../context/blog-context";
 export default function CreateBlog() {
   const { createBlogHandler } = useBlogContext();
   return (
-    <form className="flex px-2 flex-col gap-4" onSubmit={createBlogHandler}>
-      <label htmlFor="">Title:</label>
-      <input className="border" type="text" name="title" />
-      <input type="file" name="blog-image" />
-      <textarea
-        className="border"
-        name="content"
-        cols="30"
-        rows="10"
-      ></textarea>
-      <button type="submit" className="border w-16">
-        Submit
-      </button>
-    </form>
+    <div className="flex justify-center pt-10">
+      <form className="w-full max-w-2xl bg-white rounded-lg shadow p-6 space-y-4" onSubmit={createBlogHandler}>
+        <h2 className="text-lg font-semibold text-gray-900">Create Post</h2>
+        <div>
+          <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-700">What's on your mind?</label>
+          <input
+            id="title"
+            className="block w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+            type="text"
+            name="title"
+            placeholder="Hello world!"
+          />
+        </div>
+        <div>
+          <label htmlFor="blog-image" className="block mb-2 text-sm font-medium text-gray-700">Upload Image</label>
+          <input
+            id="blog-image"
+            className="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer focus:outline-none"
+            type="file"
+            name="blog-image"
+          />
+        </div>
+        <div>
+          <label htmlFor="content" className="block mb-2 text-sm font-medium text-gray-700">Content</label>
+          <textarea
+            id="content"
+            className="block w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+            name="content"
+            rows="4"
+            placeholder="Tell us more..."
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300"
+        >
+          Post
+        </button>
+      </form>
+    </div>
   );
 }

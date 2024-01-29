@@ -6,7 +6,7 @@ import Login from "./pages/login";
 import Home from "./pages/home";
 import CreateBlog from './pages/create-blog'
 import Blog from "./pages/blog";
-
+// import Footer from "./components/footer"
 function App() {
   return (
     <>
@@ -20,6 +20,7 @@ function App() {
 
           <Route path="/register" element={<Register />} />
         </Routes>
+        {/* <Footer/> */}
       </div>
     </>
   );
