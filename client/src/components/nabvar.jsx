@@ -59,6 +59,7 @@ export default function Navbar() {
         
         {user ? (
           <div className="flex items-center gap-2">
+            <img src={baseUrl + `user/update-profile`} alt="" />
             <CircleUserRoundIcon/>
             <span className="font-semibold">{user.name}</span>
             <button

@@ -44,25 +44,48 @@ const UserProvider = ({ children }) => {
 
   const registerHandler = async (e) => {
     e.preventDefault();
-
-    const body = {
-      name: e.target.name.value,
-      email: e.target.email.value,
-      password: e.target.password.value,
-    };
-
+  
+    const formData = new FormData();
+    formData.append('name', e.target.name.value);
+    formData.append('email', e.target.email.value);
+    formData.append('password', e.target.password.value);
+    formData.append('profile-pic', e.target['profile-image'].files[0]);
+  
     try {
-      const { data } = await axios.post(`${baseUrl}/user/register`, body);
-      console.log(data);
-      navigate("/login");
+      const response = await axios.post(`${baseUrl}/user/update-profile`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      console.log(response.data);
+      navigate('/login');
     } catch (err) {
       console.log(err);
     }
   };
+  
+
+  // const profilePicHandler = async (e) => {
+  //   e.preventDefault()
+  //   const body = new FormData();
+  //   body.append("userId", user._id);
+  //   body.append("profile-Pic", e.target["profile-image"].files[0]);
+
+  //   try {
+  //     const res = await axios.post(
+  //       `${baseUrl}/user/update-profile`,
+  //       body
+  //     )
+  //     setUser(res.data)
+  //     e.target.reset();
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   return (
     <UserContext.Provider
-      value={{ user, logoutHandler, registerHandler, loginHandler }}
+      value={{ user, logoutHandler, registerHandler, loginHandler,profilePicHandler }}
     >
       {children}
     </UserContext.Provider>
