@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ThumbsUp, Trash2 } from "lucide-react";
 import { baseUrl } from "../config/api";
+import UserImg from "./userImg";
 
 const capitalizeFirstLetter = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
@@ -17,8 +18,8 @@ const Post = ({ post, user, deletePostHandler, addCommentHandler }) => {
       <div className="flex justify-between items-start">
         <div>
           <h2 className="text-xl font-bold text-gray-900 mb-2">{post?.title}</h2>
-          <p className="text-gray-700 font-bold">
-            User: {capitalizeFirstLetter(post?.author?.name)}
+          <p className="text-gray-700 font-bold flex gap-2 items-center">
+            <UserImg /> {capitalizeFirstLetter(post?.author?.name)}
           </p>
           <p className="text-gray-700 mb-4">{post?.content}</p>
         </div>

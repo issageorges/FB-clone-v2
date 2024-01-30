@@ -6,9 +6,12 @@ const route = express.Router();
 
 // Register a user  /user/register
 
-route.post("/register", async (req, res) => {
+route.post("/register", upload.single("profile-pic"), async (req, res) => {
   const user = req.body;
   console.log(user);
+  if (req.file) {
+  user.profileImg = req.file.path;
+  }
   const newUser = new User(user);
   await newUser.save();
   res.json(newUser);
@@ -27,7 +30,7 @@ route.post("/login", async (req, res) => {
 });
 
 // Upload a profile picture /update-profile
-route.post("/update-profile", upload.single("profileImage"), async (req, res) => {
+route.post("/update-profile", upload.single("profile-pic"), async (req, res) => {
   try {
     const userId = req.user.id; 
 

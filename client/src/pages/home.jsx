@@ -6,6 +6,7 @@ import { CircleUserRoundIcon } from "lucide-react";
 
 import Post from "../components/post";
 import UserWelcome from "../components/userWelcome";
+import UserImg from "../components/userImg";
 
 export default function Home() {
   const { user, fetchUser } = useUserContext();
@@ -24,7 +25,7 @@ export default function Home() {
 
         <div className="flex items-center space-x-4 p-4 bg-gray-100 rounded-full mb-6">
           <div className="flex-shrink-0">
-            <CircleUserRoundIcon />
+          <UserImg />
           </div>
           <Link
             to="/create-post"
