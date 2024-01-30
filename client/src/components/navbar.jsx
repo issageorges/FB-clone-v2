@@ -1,4 +1,4 @@
-import React from "react";
+
 import { Link } from "react-router-dom";
 import {
   HomeIcon,
@@ -17,6 +17,10 @@ import { useUserContext } from "../context/user-context";
 
 export default function Navbar() {
   const { logoutHandler, user } = useUserContext();
+
+  function capitalizeFirstLetter(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+  }
 
   return (
     <nav className="flex justify-between items-center bg-white shadow p-4">
@@ -48,9 +52,9 @@ export default function Navbar() {
 
       <div className="flex items-center gap-4">
         {user ? (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
             <CircleUserRoundIcon />
-            <span className="font-semibold">{user.name}</span>
+            <span className="font-semibold mr-5">{capitalizeFirstLetter(user.name)}</span>
             <button className="text-gray-700 hover:text-blue-600" onClick={logoutHandler}>
               <LogOutIcon className="w-6 h-6" />
             </button>

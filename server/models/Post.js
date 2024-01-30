@@ -8,14 +8,14 @@ const postSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      require: true,
-    },
-    comments: {
-      type: Number,
-      default: 0,
-      min: 0,
       required: true,
     },
+    comments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Comment",
+      }
+    ],
     content: {
       type: String,
       required: true,

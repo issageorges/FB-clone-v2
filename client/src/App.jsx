@@ -4,7 +4,6 @@ import Register from "./pages/register";
 import Login from "./pages/login";
 import Home from "./pages/home";
 import CreatePost from './pages/create-post'
-import Post from "./pages/post";
 
 // import Footer from "./components/footer"
 
@@ -16,8 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create-post" element={<CreatePost />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/post/:postId" element={<Post />} />
+          <Route path="/login" element={<Login />} />     
           <Route path="/register" element={<Register />} />
         </Routes>
         {/* <Footer/> */}

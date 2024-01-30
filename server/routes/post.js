@@ -13,7 +13,7 @@ route.get("/", async (req, res) => {
   res.json(posts);
 });
 
-// 2- CREATE a post  /post/create
+// CREATE a post  /post/create
 
 route.post("/create", upload.single("post-image"), async (req, res) => {
   const post = req.body;
@@ -24,7 +24,7 @@ route.post("/create", upload.single("post-image"), async (req, res) => {
   res.json(newPost);
 });
 
-// 3- DELETE a post
+// DELETE a post
 
 route.delete("/:postId", async (req, res) => {
   const { postId } = req.params;
@@ -37,30 +37,30 @@ route.delete("/:postId", async (req, res) => {
   res.json({ message: "Post deleted successfully!" });
 });
 
-// 4- UPDATE a post  /post/like/:blogId/:authorId
+// CREATE a comment on a post  /post/comment/:postId
 
-// route.put("/like/:postId/:authorId", async (req, res) => {
-//   const { postId, authorId } = req.params;
-//   const post = await Post.findById(postId).populate("author");
+route.post("/comment/:postId", async (req, res) => {
+  try {
+    const { postId } = req.params;
+    const { text, author } = req.body;
 
-//   const isLiked = post.likes.includes(authorId);
+    const post = await Post.findById(postId);
+    post.comments.push({ text, author });
 
-//   if (isLiked) {
-//     post.likes = post.likes.filter((id) => id.toString() !== authorId);
-//   } else {
-//     post.likes.push(authorId);
-//   }
+    await post.save();
+    await post.populate("author");
 
-//   await post.save();
-  
+    res.json(post);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
 
-//   res.json(post);
-// });
-
-// 5- GET a post by id
+// GET a post by id
 
 route.get("/:postId", async (req, res) => {
-  const postId = req.params.blogId;
+  const postId = req.params.postId;
   const post = await Post.findById(postId).populate("author");
   res.json(post);
 });

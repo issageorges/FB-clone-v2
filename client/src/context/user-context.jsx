@@ -47,8 +47,8 @@ const UserProvider = ({ children }) => {
       localStorage.setItem("user", JSON.stringify(data));
       setUser(data);
       navigate("/");
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -64,8 +64,8 @@ const UserProvider = ({ children }) => {
     try {
       await axios.post(`${baseUrl}/user/register`, body);
       navigate("/login");
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     }
   };
 

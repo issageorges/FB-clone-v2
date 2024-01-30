@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import blogRouter from "./routes/post.js";
 import userRouter from "./routes/user.js";
+import commentRouter from "./routes/comment.js"
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use("/uploads", express.static("./uploads"));
 
 app.use("/post", blogRouter);
 app.use("/user", userRouter);
+app.use("/comment", commentRouter)
 
 app.listen(PORT, () => {
   mongoose
