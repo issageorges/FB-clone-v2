@@ -60,7 +60,7 @@ const UserProvider = ({ children }) => {
     formData.append('password', e.target.password.value);
     formData.append('profile-pic', e.target['profile-image'].files[0]);
     try {
-      const response = await axios.post(`${baseUrl}/user/update-profile`, formData, {
+      const response = await axios.post(`${baseUrl}/user/register`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
