@@ -17,20 +17,20 @@ const UserProvider = ({ children }) => {
     navigate("/login");
   };
 
-  const fetchUser = async () => {
-    try {
-      const response = await axios.get(`${baseUrl}/user`);
-      setUser(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const fetchUser = async () => {
+  //   try {
+  //     const response = await axios.get(`${baseUrl}/user`);
+  //     setUser(response.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       setUser(JSON.parse(storedUser));
-      fetchUser(); // Fetch user information from the server
+      // fetchUser(); // Fetch user information from the server
     }
   }, []);
 
@@ -54,24 +54,41 @@ const UserProvider = ({ children }) => {
 
   const registerHandler = async (e) => {
     e.preventDefault();
-
-    const body = {
-      name: e.target.name.value,
-      email: e.target.email.value,
-      password: e.target.password.value,
-    };
-
+    const formData = new FormData();
+    formData.append('name', e.target.name.value);
+    formData.append('email', e.target.email.value);
+    formData.append('password', e.target.password.value);
+    formData.append('profile-pic', e.target['profile-image'].files[0]);
     try {
-      await axios.post(`${baseUrl}/user/register`, body);
-      navigate("/login");
-    } catch (error) {
-      console.log(error);
+      const response = await axios.post(`${baseUrl}/user/update-profile`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      console.log(response.data);
+      navigate('/login');
+    } catch (err) {
+      console.log(err);
     }
   };
+  // const registerHandler = async (e) => {
+  //   e.preventDefault();
+  //   const body = {
+  //     name: e.target.name.value,
+  //     email: e.target.email.value,
+  //     password: e.target.password.value,
+  //   };
+  //   try {
+  //     await axios.post(`${baseUrl}/user/register`, body);
+  //     navigate("/login");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <UserContext.Provider
-      value={{ user, logoutHandler, registerHandler, loginHandler, fetchUser }}
+      value={{ user, logoutHandler, registerHandler, loginHandler }}
     >
       {children}
     </UserContext.Provider>

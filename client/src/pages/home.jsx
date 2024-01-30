@@ -11,11 +11,11 @@ export default function Home() {
   const { user, fetchUser } = useUserContext();
   const { posts, deletePostHandler, addCommentHandler } = usePostContext();
 
-  useEffect(() => {
-    if (!user) {
-      fetchUser();
-    }
-  }, [user, fetchUser]);
+  // useEffect(() => {
+  //   if (!user) {
+  //     fetchUser();
+  //   }
+  // }, [user, fetchUser]);
 
   return (
     <div className="bg-white shadow-sm">
