@@ -19,11 +19,11 @@ router.post("/:postId/:userId", async (req, res) => {
 
     console.log("newComment:", newComment);
 
-    const post = await Post.findByIdAndUpdate(
-      postId,
-      { $inc: { comments: 1 } },
-      { new: true }
-    );
+    // const post = await Post.findByIdAndUpdate(
+    //   postId,
+    //   // { $inc: { comments: 1 } },
+    //   { new: true }
+    // );
 
     res.json(newComment);
   } catch (err) {

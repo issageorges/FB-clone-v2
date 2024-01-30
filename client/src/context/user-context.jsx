@@ -30,7 +30,7 @@ const UserProvider = ({ children }) => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       setUser(JSON.parse(storedUser));
-      fetchUser(); // Fetch user information from the server
+      // fetchUser(); // Fetch user information from the server
     }
   }, []);
 
