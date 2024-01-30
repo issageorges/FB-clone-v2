@@ -19,7 +19,7 @@ const Post = ({ post, user, deletePostHandler, addCommentHandler }) => {
         <div>
           <h2 className="text-xl font-bold text-gray-900 mb-2">{post?.title}</h2>
           <p className="text-gray-700 font-bold flex gap-2 items-center">
-            <UserImg /> {capitalizeFirstLetter(user.name)}
+            <UserImg /> {capitalizeFirstLetter(post.author.name)}
           </p>
           <p className="text-gray-700 mb-4">{post?.content}</p>
         </div>
