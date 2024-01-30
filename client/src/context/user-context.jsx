@@ -88,7 +88,7 @@ const UserProvider = ({ children }) => {
 
   return (
     <UserContext.Provider
-      value={{ user, logoutHandler, registerHandler, loginHandler, fetchUser }}
+      value={{ user, logoutHandler, registerHandler, loginHandler }}
     >
       {children}
     </UserContext.Provider>
