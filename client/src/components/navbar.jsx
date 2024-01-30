@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import logo from '../assets/logoo.png';
 import { useUserContext } from "../context/user-context";
+import { baseUrl } from "../config/api";
 
 export default function Navbar() {
   const { logoutHandler, user } = useUserContext();
@@ -53,6 +54,7 @@ export default function Navbar() {
       <div className="flex items-center gap-4">
         {user ? (
           <div className="flex items-center gap-4">
+            <img src={baseUrl + `user/update-profile`+user.profileImg} alt="" />
             <CircleUserRoundIcon />
             <span className="font-semibold mr-5">{capitalizeFirstLetter(user.name)}</span>
             <button className="text-gray-700 hover:text-blue-600" onClick={logoutHandler}>

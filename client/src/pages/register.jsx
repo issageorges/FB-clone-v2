@@ -21,6 +21,14 @@ export default function Register() {
               <label htmlFor="password">Password:</label>
               <input className="mb-3 p-2 border rounded-md" type="password" name="password" />
 
+              <label htmlFor="profile-image">Upload Image:</label>
+              <input
+                id="profile-image"
+                className="border"
+                type="file"
+                name="profile-image"
+              />
+
               <button type="submit" className="mb-3 p-2 bg-blue-600 text-white rounded-md">Submit</button>
             </form>
           </div>
