@@ -55,7 +55,7 @@ export default function Navbar() {
       <div className="flex items-center gap-4">
         {user ? (
           <div className="flex items-center gap-4">
-            <UserImg />
+            <UserImg  />
             <span className="font-semibold mr-5">{capitalizeFirstLetter(user.name)}</span>
             <button className="text-gray-700 hover:text-blue-600" onClick={logoutHandler}>
               <LogOutIcon className="w-6 h-6" />
